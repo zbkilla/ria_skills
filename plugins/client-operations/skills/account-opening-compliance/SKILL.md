@@ -106,6 +106,23 @@ A single individual may satisfy both prongs (e.g., a sole owner who is also the 
 
 **Corporate Transparency Act interaction.** The Corporate Transparency Act (CTA), effective 2024, requires many companies to report beneficial ownership information directly to FinCEN. While the CTA's reporting obligation is on the entity itself (not the financial institution), the information reported to FinCEN may eventually become available to financial institutions for verification purposes. In the interim, firms should continue to collect and verify beneficial ownership information independently through the certification form process. The CTA does not relieve financial institutions of their CDD Rule obligations. However, firms should monitor the evolving regulatory landscape for guidance on how CTA-reported data may be used to supplement or streamline the beneficial ownership verification process at account opening.
 
+### Tax Compliance: FATCA and CRS
+Account opening must collect information to satisfy international tax reporting obligations. These requirements apply regardless of the account holder's citizenship and are triggered by indicators of foreign tax residency.
+
+**FATCA (Foreign Account Tax Compliance Act).** US financial institutions must determine whether account holders are US persons (requiring W-9 collection) or non-US persons (requiring W-8BEN or W-8BEN-E collection and FATCA classification). For entity accounts such as trusts, the firm must classify the entity under FATCA (e.g., Active NFFE, Passive NFFE, Financial Institution) and, for Passive NFFEs, identify any controlling persons who are US persons. Failure to collect valid W-8/W-9 forms triggers backup withholding at 24% on reportable payments.
+
+**CRS (Common Reporting Standard).** If any account holder or controlling person is tax-resident in a CRS-participating jurisdiction (most countries outside the US), the firm must collect a self-certification of tax residency, including the foreign taxpayer identification number (TIN). For the family trust scenario with a UK-resident trustee, CRS requires reporting the account to HMRC via the firm's CRS reporting channel. The self-certification must be collected at or before account opening.
+
+**Integration with account opening workflow.** The tax compliance gate should:
+- Collect W-9 from all US persons and W-8BEN from all non-US persons at account opening
+- Classify entity accounts under FATCA (Active/Passive NFFE, Financial Institution, etc.)
+- Collect CRS self-certification forms from any person with foreign tax residency indicators
+- Validate TIN format against the issuing country's known format (e.g., UK NI number format: 2 letters + 6 digits + 1 letter)
+- Flag accounts with missing or expired tax forms for remediation before activation
+- Set renewal triggers for W-8 forms (expire every 3 years unless a change of circumstances occurs)
+
+**Cross-border complexity.** When account holders have tax obligations in multiple jurisdictions (e.g., a US-UK dual national, or a trust with trustees in different countries), the firm may need to report under both FATCA and CRS. The account opening system should identify multi-jurisdictional reporting obligations based on the tax residency declarations collected and route these accounts for compliance review.
+
 ### Suitability Assessment at Opening
 Account opening is the primary data collection event for investment suitability. The compliance framework requires that the firm gather sufficient information to evaluate the suitability of any subsequent investment recommendation before or at the time of the first recommendation.
 
