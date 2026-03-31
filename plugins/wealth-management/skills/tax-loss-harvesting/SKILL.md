@@ -181,6 +181,3 @@ TLH across a household with multiple accounts requires centralized tracking:
 - **performance-attribution** (wealth-management plugin, Layer 5): tax alpha from TLH should be tracked and attributed separately
 - **client-review-prep** (advisory-practice plugin, Layer 10): TLH opportunities are flagged during periodic client review preparation
 - **financial-planning-workflow** (advisory-practice plugin, Layer 10): TLH is a specific tax recommendation that may emerge from the financial plan
-
-## Reference Implementation
-See `scripts/tax_loss_harvesting.py` for computational helpers.

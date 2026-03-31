@@ -30,55 +30,57 @@ both
 
 ---
 
-## Part I: Foundational Principles
+## Core Concepts
+
+### Part I: Foundational Principles
 
 These principles form the philosophical bedrock of effective financial coaching. They should inform every interaction, even when the immediate topic is technical.
 
-### No One Is Crazy
+#### No One Is Crazy
 Every person makes financial decisions that seem rational to them given their unique life experiences. Someone who grew up during hyperinflation has a fundamentally different relationship with cash than someone raised in a period of steady growth. A person whose parents lost everything in a market crash will experience equity investing as viscerally dangerous in a way that no rational argument can fully override.
 
 **Coaching implication:** Before correcting a client's "irrational" behavior, seek to understand the lived experience that makes it feel rational to them. The question is not "why are you being irrational?" but "what experience taught you that this was the right way to handle money?" Understanding the origin of the behavior is a prerequisite to changing it. (Housel, *The Psychology of Money*)
 
-### Luck and Risk Are Siblings
+#### Luck and Risk Are Siblings
 Success is never purely earned, and failure is never purely deserved. Both luck and risk are real forces that operate alongside skill and effort. Bill Gates attended one of the only high schools in the world with a computer terminal in 1968 — his skill was extraordinary, but so was his luck. His equally talented classmate Kent Evans died in a mountaineering accident before graduation.
 
 **Coaching implication:** Help clients hold outcomes loosely. When investments succeed, resist the narrative that it was all skill. When they fail, resist the narrative that it was all poor judgment. This humility creates space for better decision-making because it reduces both the overconfidence that follows wins and the shame that follows losses. Focus on whether the *process* was sound, not whether the *outcome* was favorable. (Housel)
 
-### Never Enough — The Danger of Moving Goalposts
+#### Never Enough — The Danger of Moving Goalposts
 The hardest financial skill is getting the goalpost to stop moving. Social comparison is the enemy of financial satisfaction. There is no amount of money that will feel like "enough" if the reference point keeps shifting upward. Rajat Gupta had $100 million and risked it all for more. Bernie Madoff had a legitimate, profitable business and destroyed it chasing illegitimate gains.
 
 **Coaching implication:** Help clients define "enough" explicitly and in writing — not as a number, but as a life. What does a Tuesday look like when money is no longer a source of stress? What experiences, relationships, and freedoms constitute a rich life? Naming "enough" is one of the most valuable exercises in financial planning, and one of the hardest. The things that are never worth risking for more: reputation, freedom, family, happiness. (Housel)
 
-### Compounding Requires Time, Not Heroics
+#### Compounding Requires Time, Not Heroics
 Warren Buffett's net worth is ~$84 billion. Of that, ~$82 billion was accumulated after his 50th birthday, and ~$81 billion after his 60th. His skill is investing — but his secret is *time*. He started at age 10 and never stopped. Good investing is not about earning the highest returns (which requires taking risks that may wipe you out); it is about earning consistent, reasonable returns over the longest possible period.
 
 **Coaching implication:** The most important variable in a client's financial life is not their return rate — it is how many years they stay invested. Anything that interrupts compounding — panic selling, lifestyle inflation that eliminates savings, or chasing returns in ways that risk permanent capital loss — is far more destructive than earning average returns. Help clients internalize that "average" returns sustained over decades produce extraordinary results. (Housel; Sethi, *I Will Teach You to Be Rich*)
 
-### Getting Wealthy vs. Staying Wealthy
+#### Getting Wealthy vs. Staying Wealthy
 Getting money requires optimism, risk-taking, and putting yourself out there. Keeping money requires the opposite: humility, frugality, and a healthy dose of paranoia that what you have could be taken away. Many people are good at one but not the other.
 
 **Coaching implication:** A complete financial plan requires both engines. The growth engine (investing, earning, risk-taking) and the preservation engine (margin of safety, insurance, liquidity, diversification). Clients who are natural risk-takers need coaching on preservation. Clients who are natural savers need coaching on deploying capital. Staying wealthy requires what Housel calls a "survival mentality" — a plan that can endure across multiple economic environments, not one optimized for the current one. (Housel)
 
-### Freedom Is the Highest Form of Wealth
+#### Freedom Is the Highest Form of Wealth
 The highest dividend money pays is the ability to control your time — to wake up and say, "I can do whatever I want today." This is the universal aspiration that underlies most financial goals when you dig deep enough. People say they want $X, but what they usually mean is they want the *freedom* that $X would provide.
 
 **Coaching implication:** When a client says "I want to retire at 55" or "I want $3 million," probe the desire underneath: what would that enable you to *do*? Often the underlying freedom — leaving a toxic job, spending mornings with children, traveling for a month each year — is achievable well before the stated financial target. Help clients separate the freedom they want from the number they've anchored on. (Housel)
 
-### Wealth Is What You Don't See
+#### Wealth Is What You Don't See
 Wealth is the nice cars *not* purchased, the diamonds *not* bought, the first-class upgrades *declined*. Wealth is financial assets that haven't yet been converted to visible stuff. We tend to judge wealth by visible spending, but visible spending is literally the *opposite* of wealth — it is wealth that has been converted to consumption.
 
 **Coaching implication:** This reframe is powerful for clients caught in lifestyle inflation. Rich is current income; wealth is future optionality. Every visible purchase trades future freedom for present display. This doesn't mean never spending — it means spending *consciously* on what genuinely matters while building invisible wealth that funds future freedom. (Housel; Sethi)
 
-### Reasonable Beats Rational
+#### Reasonable Beats Rational
 A mathematically optimal strategy that you abandon during a downturn is worse than a slightly suboptimal strategy that you can sustain through every market environment. Fever is technically beneficial (it helps fight infection), but no reasonable person would choose to endure it without treatment. Similarly, a 100% equity portfolio may be optimal over 30 years, but if it causes a client to panic-sell during a 40% drawdown, a 70/30 portfolio that they actually hold is superior in practice.
 
 **Coaching implication:** Always optimize for the strategy a client can *live with*, not the strategy that backtests best. Ask: "If this portfolio dropped 35% next month, would you be able to sleep? Would you change anything?" If the answer involves selling, the allocation is too aggressive regardless of what the math says. Reasonable > rational. (Housel)
 
 ---
 
-## Part II: Client Psychology Frameworks
+### Part II: Client Psychology Frameworks
 
-### Invisible Scripts
+#### Invisible Scripts
 Invisible scripts are the deeply held, unconscious beliefs about money that people absorb from their family, culture, and early experiences. They operate below conscious awareness but exert enormous influence on financial behavior. Common invisible scripts include:
 
 - "We can't afford that" → scarcity mindset, difficulty spending even when resources are abundant
@@ -92,7 +94,7 @@ Invisible scripts are the deeply held, unconscious beliefs about money that peop
 
 **Coaching approach:** Name the script explicitly. Help the client see that the script was a survival strategy that made sense in its original context (perhaps their parents genuinely couldn't afford things) but may no longer serve them. Scripts are not "wrong" — they are *inherited*, and the client gets to choose which ones to keep. (Sethi, *I Will Teach You to Be Rich*; Sethi, *Money for Couples*)
 
-### The Four Money Types
+#### The Four Money Types
 People tend to cluster into recognizable archetypes in how they relate to money. Identifying a client's type enables more targeted coaching. Most people are blends, but one type usually dominates.
 
 **The Avoider**
@@ -115,7 +117,7 @@ Dreamers engage in magical thinking about money. They believe things will "work 
 
 *Coaching approach:* Don't crush the dream — channel it. Dreamers have something valuable: vision. The coaching task is to connect the vision to a mechanism. "You want to open a restaurant in five years — let's figure out what that costs, what you'd need to save monthly, and what the first step is this week." Convert dreaming into planning without losing the energy that makes dreaming valuable. (Sethi, *Money for Couples*)
 
-### Money Dials — Spending as Values Expression
+#### Money Dials — Spending as Values Expression
 Money Dials are the categories of spending where a person derives disproportionate joy, meaning, or identity. The framework: spend *extravagantly* on the things you love and cut *mercilessly* on the things you don't care about. Most financial advice treats all spending as equal ("cut back everywhere"), which produces a uniformly diminished life rather than a deliberately designed one.
 
 **Common high-value dials:** Eating out and food experiences, travel, health and wellness, convenience (time-saving services), education, relationships and generosity.
@@ -128,9 +130,9 @@ Money Dials are the categories of spending where a person derives disproportiona
 
 ---
 
-## Part III: Cognitive Biases in Financial Decision-Making
+### Part III: Cognitive Biases in Financial Decision-Making
 
-### Loss Aversion
+#### Loss Aversion
 Losses hurt approximately 2× more than equivalent gains feel good (Kahneman & Tversky, Prospect Theory 1979).
 
 **Impact:** Investors sell winners too early to "lock in" gains while holding losers too long hoping to break even. This *disposition effect* reverses the rational approach of cutting losses and letting winners run.
@@ -141,7 +143,7 @@ Losses hurt approximately 2× more than equivalent gains feel good (Kahneman & T
 - Reframe: "If I held cash instead of this position, would I buy it today at this price?"
 - Recognize that the purchase price is a sunk cost — it is psychologically powerful but analytically irrelevant.
 
-### Overconfidence
+#### Overconfidence
 Investors systematically overestimate their skill and precision while underestimating uncertainty and the role of luck.
 
 **Impact:** Excessive trading (eroding returns through costs and taxes), concentrated positions, under-diversification, and underestimation of tail risks. Housel's framing: the line between bold and reckless is thinner than most people think, and you only see it in hindsight.
@@ -152,7 +154,7 @@ Investors systematically overestimate their skill and precision while underestim
 - Sethi's principle: most people cannot beat average returns, and average returns (historically ~8% nominal) are *excellent*. Accept them.
 - Size positions according to conviction *and* uncertainty.
 
-### Anchoring
+#### Anchoring
 Over-relying on an initial reference point — purchase price, 52-week high, analyst target — when making decisions.
 
 **Impact:** Holding a stock because "it was worth $X" despite changed fundamentals. Refusing to sell below cost basis. Fixating on round numbers.
@@ -162,7 +164,7 @@ Over-relying on an initial reference point — purchase price, 52-week high, ana
 - "If I didn't own this, would I buy it today at this price with this information?"
 - Use multiple independent valuation methods to avoid anchoring on a single estimate.
 
-### Recency Bias
+#### Recency Bias
 Overweighting recent events and extrapolating them forward while underweighting long-term base rates.
 
 **Impact:** Performance chasing after strong runs, panic selling after drawdowns, extrapolating recent trends indefinitely. Housel: pessimism is seductive because setbacks happen quickly and dramatically, while growth is slow and quiet — making negative trends feel more "real" than positive ones.
@@ -173,7 +175,7 @@ Overweighting recent events and extrapolating them forward while underweighting 
 - Dollar-cost averaging removes timing decisions entirely.
 - Remind clients: the S&P 500 has experienced 20%+ drawdowns roughly every 4-6 years. This is the *price of admission* for long-term returns, not an anomaly.
 
-### Herding
+#### Herding
 Following the crowd, driven by FOMO or social proof.
 
 **Impact:** Buying at euphoric tops, selling at panicked bottoms — the most reliable way to destroy wealth over time. Housel's insight: bubbles form when short-term traders (who have a different rational price for an asset) set prices that long-term holders mistakenly use as signals.
@@ -183,21 +185,21 @@ Following the crowd, driven by FOMO or social proof.
 - Pre-committed Investment Policy Statement with rebalancing bands removes the decision from the emotional moment.
 - Recognize that "everyone is doing it" is a description of crowd behavior, not evidence of value.
 
-### Mental Accounting
+#### Mental Accounting
 Treating money differently based on source, label, or intended use rather than recognizing fungibility.
 
 **Impact:** Taking more risk with "house money" (gains), keeping low-yield savings earmarked for goals while carrying high-interest debt, evaluating accounts in isolation.
 
 **Mitigation and nuance:** Strict fungibility is the rational approach, but mental accounting can be *useful* when it serves as a commitment device. Sethi's Conscious Spending Plan deliberately creates mental accounts (Fixed Costs, Investments, Savings, Guilt-Free Spending) precisely because the psychological separation helps people stick to the plan. The key distinction: mental accounting that *prevents* good decisions (holding low-yield cash while carrying high-interest debt) is destructive; mental accounting that *enables* good decisions (earmarking guilt-free spending so you actually enjoy it) can be constructive.
 
-### Status Quo Bias
+#### Status Quo Bias
 Preference for the current state, inertia, avoidance of change even when change is beneficial.
 
 **Impact:** Not rebalancing drifted portfolios, staying in underperforming investments, remaining in high-fee funds, keeping legacy holdings without analytical justification.
 
 **Mitigation and leverage:** Status quo bias is destructive when it prevents beneficial changes, but it can be *harnessed* through intelligent defaults. Auto-enrollment in 401(k) plans increases participation from ~50% to ~90%. Auto-escalation increases contribution rates with raises. The insight from both Thaler and Sethi: design the default to be the desired behavior, then let inertia work *for* you instead of against you.
 
-### Confirmation Bias
+#### Confirmation Bias
 Seeking information that confirms existing beliefs while discounting disconfirming evidence.
 
 **Impact:** Reading only bullish research on a long position, dismissing valid criticism, surrounding oneself with agreeable sources.
@@ -207,7 +209,7 @@ Seeking information that confirms existing beliefs while discounting disconfirmi
 - Pre-mortem analysis: "Assume this investment loses 50% — what went wrong?"
 - Devil's advocate process: argue the opposite side before committing.
 
-### Framing Effects
+#### Framing Effects
 Decisions change depending on presentation, even when underlying facts are identical.
 
 - "90% survival rate" vs. "10% mortality rate"
@@ -218,9 +220,9 @@ Decisions change depending on presentation, even when underlying facts are ident
 
 ---
 
-## Part IV: Coaching Frameworks
+### Part IV: Coaching Frameworks
 
-### The Rich Life Vision
+#### The Rich Life Vision
 Before any tactical financial work, help clients articulate what a "Rich Life" looks like — a specific, vivid vision of the life they want money to enable. This is not a number; it is a lived experience.
 
 **Four-activity process (Sethi, *Money for Couples*):**
@@ -237,7 +239,7 @@ Before any tactical financial work, help clients articulate what a "Rich Life" l
 - **Get specific and vivid.** Not "travel more" but "spend three weeks in Japan in autumn with my partner, staying in traditional ryokans and taking a cooking class in Kyoto." Specificity enables planning; vagueness enables procrastination.
 - **Live your Rich Life today AND build toward a richer life tomorrow.** This is not a deferred gratification exercise. Find elements of the Rich Life that can be experienced now — even small versions — while building toward the larger vision.
 
-### $30,000 Questions vs. $3 Questions
+#### $30,000 Questions vs. $3 Questions
 Most people obsess over $3 questions (should I cancel this subscription? is this latte too expensive?) while ignoring $30,000 questions (is my asset allocation appropriate? am I maximizing my employer match? should I refinance my mortgage? should I negotiate my salary?).
 
 **The $30,000 questions:**
@@ -250,12 +252,12 @@ Most people obsess over $3 questions (should I cancel this subscription? is this
 
 **Coaching implication:** When a client asks about cutting a $12/month subscription, gently redirect: "That's a fine optimization, but let's make sure we've addressed the big levers first. Are you capturing your full employer match? What's your all-in investment fee? When did you last negotiate your compensation?" The $3 optimizations feel productive but are often a form of avoidance — doing the easy thing to avoid the hard thing. (Sethi, *I Will Teach You to Be Rich*; *Money for Couples*)
 
-### The 85% Solution
+#### The 85% Solution
 Getting started is more important than being perfect. A plan that is 85% optimal and actually implemented beats a theoretically perfect plan that never gets executed because the client is paralyzed by analysis.
 
 **Application:** Don't let a client spend six months researching the "best" index fund when four reasonable options are functionally identical. Don't let perfect asset allocation research delay starting to invest. Automation and consistency matter more than precision. Set up the system, start the contributions, and optimize later. (Sethi)
 
-### Conscious Spending Plan
+#### Conscious Spending Plan
 A framework that replaces the moralistic "budget" (which most people hate and abandon) with a values-aligned spending system.
 
 **Four buckets:**
@@ -268,7 +270,7 @@ A framework that replaces the moralistic "budget" (which most people hate and ab
 
 **The word "budget" is taboo** in this framework — it carries connotations of restriction, scarcity, and punishment. "Conscious Spending Plan" signals intentionality and abundance. (Sethi, *I Will Teach You to Be Rich*; *Money for Couples*)
 
-### Automation as Behavioral Architecture
+#### Automation as Behavioral Architecture
 The most reliable way to ensure good financial behavior is to remove the need for willpower entirely. Automate the flow of money so that the right things happen by default.
 
 **Automation sequence:**
@@ -279,7 +281,7 @@ The most reliable way to ensure good financial behavior is to remove the need fo
 
 **The psychology:** Automation leverages status quo bias, reduces decision fatigue, eliminates the monthly willpower battle, and makes good behavior the default. A client who automates everything should spend ~90 minutes per month managing their finances. The rest of the time, the system runs itself. (Sethi)
 
-### Coaching Couples Through Money Conversations
+#### Coaching Couples Through Money Conversations
 Money is the #1 source of conflict in relationships, but most couples have never had a structured, productive money conversation. The goal is to transform money from a source of conflict into a tool for building a shared vision.
 
 **First conversation framework (Sethi, *Money for Couples*):**
@@ -303,7 +305,7 @@ Money is the #1 source of conflict in relationships, but most couples have never
 
 ---
 
-## Part V: Nudges and Choice Architecture
+### Part V: Nudges and Choice Architecture
 
 Designing the decision environment to guide better outcomes without restricting freedom of choice (Thaler & Sunstein). These are structural interventions that work *with* human psychology rather than against it.
 
@@ -396,5 +398,3 @@ Designing the decision environment to guide better outcomes without restricting 
 - Sethi, R. (2019). *I Will Teach You to Be Rich* (2nd Edition).
 - Sethi, R. (2024). *Money for Couples: How to Make Money Decisions That Bring You Closer Together.*
 
-## Reference Implementation
-N/A — this skill is qualitative and does not require a computational script.

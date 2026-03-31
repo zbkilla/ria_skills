@@ -138,6 +138,3 @@ An appropriate benchmark must be:
 - **client-review-prep** (advisory-practice plugin, Layer 10): IPS provides the reference framework for evaluating drift and suitability during reviews
 - **financial-planning-workflow** (advisory-practice plugin, Layer 10): the financial plan informs and is codified in the investment policy statement
 - **tax-loss-harvesting** (wealth-management plugin, Layer 5): IPS may specify TLH policy parameters (minimum loss threshold, approved replacement pairs)
-
-## Reference Implementation
-N/A — this skill is qualitative and does not require a computational script.

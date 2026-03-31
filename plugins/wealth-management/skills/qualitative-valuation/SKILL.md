@@ -171,6 +171,3 @@ Alternatively, instead of adjusting the discount rate, the analyst could model a
 - **financial-statements** (wealth-management plugin, Layer 2): ROIC, margins, and cash flow patterns that validate qualitative assessments
 - **forward-risk** (wealth-management plugin, Layer 1b): risk premium adjustments from ESG and business quality factors
 - **diversification** (wealth-management plugin, Layer 4): qualitative sector/factor analysis informs diversification decisions
-
-## Reference Implementation
-N/A — this skill is qualitative and does not require a computational script.

@@ -191,6 +191,3 @@ FINRA Rule 2360 governs the conduct of member firms and associated persons in op
 - **conflicts-of-interest** (Layer 9): Selling away, undisclosed compensation, and breakpoint abuse all involve conflicts of interest that must be identified, disclosed, and mitigated
 - **know-your-customer** (Layer 9): KYC obligations under FINRA Rule 2090 provide the customer information foundation for detecting sales practice violations
 - **fiduciary-standards** (Layer 9): For dual-registrants, fiduciary duties may impose obligations beyond FINRA sales practice rules
-
-## Reference Implementation
-N/A — this skill is qualitative and does not require a computational script.

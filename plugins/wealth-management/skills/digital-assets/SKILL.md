@@ -136,6 +136,3 @@ The LP's position is worth 5.72% less than if they had simply held the tokens. I
 - **currencies-and-fx** (wealth-management plugin, Layer 2): stablecoin and crypto-fiat exchange dynamics
 - **alternatives** (wealth-management plugin, Layer 2): crypto as an alternative asset class
 - **tax-efficiency** (wealth-management plugin, Layer 5): cryptocurrency tax reporting and optimization
-
-## Reference Implementation
-N/A — this skill is qualitative and does not require a computational script.
