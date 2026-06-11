@@ -10,13 +10,16 @@ data analysis, including descriptive statistics, covariance estimation,
 regression, bootstrapping, and hypothesis testing.
 
 Usage:
-    python statistics_fundamentals.py
+    uv run statistics_fundamentals.py            # demo + verification (default)
+    python statistics_fundamentals.py --verify   # same as bare invocation
+    python statistics_fundamentals.py --help     # list available functions
 
 Dependencies:
     numpy, scipy
 """
 
-from typing import Optional
+import argparse
+import sys
 
 import numpy as np
 from scipy import stats as sp_stats
@@ -33,28 +36,43 @@ def descriptive_stats(returns: np.ndarray) -> dict:
     minimum, maximum, and median.
 
     Args:
-        returns: 1-D array of return observations.
+        returns: 1-D array of return observations. At least 3 observations
+            with non-zero variance are required (bias-corrected skewness is
+            undefined otherwise).
 
     Returns:
         Dictionary with keys: mean, std, skew, kurtosis (excess),
-        min, max, median.
+        min, max, median. Excess kurtosis is NaN when n < 4 (the
+        bias-corrected estimator requires at least 4 observations).
+
+    Raises:
+        ValueError: If fewer than 3 observations are supplied, or the
+            series has zero variance (skewness undefined).
     """
     returns = np.asarray(returns, dtype=float)
     n = len(returns)
+    if n < 3:
+        raise ValueError(
+            f"descriptive_stats requires at least 3 observations for "
+            f"bias-corrected skewness; got {n}."
+        )
     mean = float(np.mean(returns))
     std = float(np.std(returns, ddof=1))
+    if std == 0:
+        raise ValueError(
+            "descriptive_stats requires non-zero variance; skewness and "
+            "kurtosis are undefined for a constant series."
+        )
 
     # Skewness: E[(X-mu)^3] / sigma^3, adjusted for sample bias
-    if n >= 3 and std > 0:
-        skew = float(sp_stats.skew(returns, bias=False))
-    else:
-        skew = 0.0
+    skew = float(sp_stats.skew(returns, bias=False))
 
-    # Excess kurtosis: E[(X-mu)^4] / sigma^4 - 3, adjusted for sample bias
-    if n >= 4 and std > 0:
+    # Excess kurtosis: E[(X-mu)^4] / sigma^4 - 3, adjusted for sample bias.
+    # The bias-corrected estimator needs n >= 4; report NaN below that.
+    if n >= 4:
         kurtosis = float(sp_stats.kurtosis(returns, bias=False))
     else:
-        kurtosis = 0.0
+        kurtosis = float("nan")
 
     return {
         "mean": mean,
@@ -175,6 +193,11 @@ def ols_regression(y: np.ndarray, x: np.ndarray) -> dict:
             - t_stats: dict with t-statistics for alpha and beta
             - p_values: dict with p-values for alpha and beta
             - residuals: 1-D array of residuals
+
+    Raises:
+        ValueError: If the design matrix is singular (e.g., x is constant
+            or contains fewer than 2 distinct observations), in which case
+            the OLS coefficients are not identified.
     """
     y = np.asarray(y, dtype=float)
     x = np.asarray(x, dtype=float)
@@ -184,7 +207,19 @@ def ols_regression(y: np.ndarray, x: np.ndarray) -> dict:
     X = np.column_stack([np.ones(n), x])
 
     # beta_hat = (X'X)^-1 X'y
-    XtX_inv = np.linalg.inv(X.T @ X)
+    if np.linalg.matrix_rank(X) < X.shape[1]:
+        raise ValueError(
+            "Singular design matrix: the regressor x is constant (or has "
+            "fewer than 2 distinct observations), so OLS coefficients are "
+            "not identified. Provide a regressor with variation."
+        )
+    try:
+        XtX_inv = np.linalg.inv(X.T @ X)
+    except np.linalg.LinAlgError as exc:
+        raise ValueError(
+            "Singular design matrix: X'X is not invertible, so OLS "
+            "coefficients are not identified."
+        ) from exc
     beta_hat = XtX_inv @ X.T @ y
 
     alpha = float(beta_hat[0])
@@ -275,6 +310,7 @@ def bootstrap_mean(
     returns: np.ndarray,
     n_samples: int = 10000,
     confidence: float = 0.95,
+    seed: int | None = 42,
 ) -> dict:
     """Estimate the mean return with bootstrapped confidence interval.
 
@@ -285,6 +321,8 @@ def bootstrap_mean(
         returns: 1-D array of return observations.
         n_samples: Number of bootstrap resamples. Defaults to 10,000.
         confidence: Confidence level (e.g., 0.95 for 95%). Defaults to 0.95.
+        seed: Seed for the random number generator. Defaults to 42 for
+            reproducible results; pass None for non-deterministic resampling.
 
     Returns:
         Dictionary with keys:
@@ -297,7 +335,7 @@ def bootstrap_mean(
     n = len(returns)
 
     # Generate all bootstrap samples at once for efficiency
-    rng = np.random.default_rng(seed=42)
+    rng = np.random.default_rng(seed=seed)
     indices = rng.integers(0, n, size=(n_samples, n))
     boot_means = np.mean(returns[indices], axis=1)
 
@@ -357,9 +395,65 @@ def jarque_bera_test(returns: np.ndarray) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Demonstration
+# Demonstration and verification
 # ---------------------------------------------------------------------------
-if __name__ == "__main__":
+
+_FUNCTIONS_HELP = """\
+Available functions:
+  descriptive_stats(returns)
+  covariance_matrix(returns)              # (n_obs, n_assets) 2-D input
+  correlation_matrix(returns)
+  shrunk_covariance(returns, shrinkage_target="identity")
+      # simplified Ledoit-Wolf-style shrinkage; for production use
+      # sklearn.covariance.LedoitWolf
+  ols_regression(y, x)                    # y = alpha + beta * x + epsilon
+  rolling_regression(y, x, window)
+  bootstrap_mean(returns, n_samples=10000, confidence=0.95, seed=42)
+  jarque_bera_test(returns)
+
+Import usage (preferred for programmatic work):
+  from statistics_fundamentals import descriptive_stats, ols_regression
+  descriptive_stats([0.021, -0.005, 0.018, ...])
+
+Running bare (or with --verify) prints a demo on synthetic data and
+asserts the worked-example values from SKILL.md, exiting nonzero on
+any mismatch.
+"""
+
+
+def _verify() -> None:
+    """Assert that key outputs match the SKILL.md worked examples."""
+    # SKILL.md Example 1: 12 monthly returns (%)
+    monthly = np.array(
+        [2.1, -0.5, 1.8, -3.2, 4.5, 0.3, -1.1, 2.7, -0.8, 3.4, 1.2, -0.6]
+    )
+
+    desc = descriptive_stats(monthly)
+    assert abs(desc["mean"] - 0.8167) < 5e-5, f"Example 1 mean mismatch: {desc['mean']}"
+    assert abs(desc["std"] - 2.195) < 5e-4, f"Example 1 std mismatch: {desc['std']}"
+    assert abs(desc["skew"] - (-0.045)) < 5e-4, f"Example 1 skew mismatch: {desc['skew']}"
+    assert abs(desc["kurtosis"] - (-0.42)) < 5e-3, (
+        f"Example 1 kurtosis mismatch: {desc['kurtosis']}"
+    )
+
+    ann_vol = desc["std"] * np.sqrt(12)
+    assert abs(ann_vol - 7.60) < 5e-3, f"Example 1 annualized vol mismatch: {ann_vol}"
+
+    jb = jarque_bera_test(monthly)
+    assert abs(jb["statistic"] - 0.09) < 5e-3, (
+        f"Example 1 Jarque-Bera mismatch: {jb['statistic']}"
+    )
+    assert jb["p_value"] > 0.05, "Example 1 should fail to reject normality"
+
+    print("\nVerification PASSED: outputs match SKILL.md worked examples")
+    print(f"  Example 1 mean:           {desc['mean']:.4f}% per month")
+    print(f"  Example 1 std:            {desc['std']:.4f}% per month")
+    print(f"  Example 1 annualized vol: {ann_vol:.2f}%")
+    print(f"  Example 1 skew/kurtosis:  {desc['skew']:.4f} / {desc['kurtosis']:.4f}")
+    print(f"  Example 1 Jarque-Bera:    {jb['statistic']:.4f} (p={jb['p_value']:.4f})")
+
+
+def _demo() -> None:
     print("=" * 60)
     print("Statistics Fundamentals - Reference Implementation Demo")
     print("=" * 60)
@@ -460,3 +554,31 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("All calculations completed successfully.")
     print("=" * 60)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Financial statistics reference implementation.",
+        epilog=_FUNCTIONS_HELP,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "--verify",
+        action="store_true",
+        help="run the demo and assert outputs match the SKILL.md worked "
+        "examples (this is also the default when run with no arguments)",
+    )
+    parser.parse_args()
+
+    # Bare invocation and --verify behave identically: demo + verification.
+    _demo()
+    try:
+        _verify()
+    except AssertionError as exc:
+        print(f"\nVerification FAILED: {exc}", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

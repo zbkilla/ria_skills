@@ -1,26 +1,9 @@
 ---
 name: fixed-income-municipal
-description: "Analyze municipal bonds including tax-equivalent yield calculations, GO vs revenue bond evaluation, and muni credit analysis. Use when the user asks about municipal bonds, tax-exempt income, tax-equivalent yield, AMT bonds, or muni credit quality. Also trigger when users mention 'muni bonds', 'tax-free bonds', 'state tax exemption', 'general obligation', 'revenue bonds', 'Build America Bonds', 'muni yield ratio', 'de minimis rule', or ask whether munis make sense for their tax bracket."
+description: "Analyze municipal bonds including tax-equivalent yield calculations, GO vs revenue bond evaluation, and muni credit analysis. Use when the user asks about municipal bonds, tax-exempt income, tax-equivalent yield, AMT bonds, callable bonds, yield-to-worst on munis, or muni credit quality. Also trigger when users mention 'muni bonds', 'tax-free bonds', 'state tax exemption', 'general obligation', 'revenue bonds', 'Build America Bonds', 'muni yield ratio', 'de minimis rule', or ask whether munis make sense for their tax bracket."
 ---
 
 # Fixed Income — Municipal
-
-## Purpose
-Analyze municipal bonds including general obligation and revenue bonds, tax-equivalent yield calculations, AMT considerations, and muni-specific credit analysis. This skill is essential for tax-aware fixed income investing and evaluating the relative value of tax-exempt versus taxable bonds.
-
-## Layer
-2 — Asset Classes
-
-## Direction
-both
-
-## When to Use
-- User asks about municipal bonds or tax-exempt fixed income
-- User asks about general obligation (GO) bonds or revenue bonds
-- User asks about tax-equivalent yield calculations
-- User asks about AMT (Alternative Minimum Tax) implications for bonds
-- User asks about state-specific tax treatment of municipal bonds
-- User asks about muni credit analysis, coverage ratios, or muni yield ratios
 
 ## Core Concepts
 
@@ -96,10 +79,17 @@ The revenue bond yields 40bp more than the GO bond. The DSCR of 1.8x is well abo
 - Confusing call provisions — many munis are callable at par after 10 years; always check yield-to-worst
 
 ## Cross-References
-- **time-value-of-money** (core plugin, Layer 0): present value and discounting fundamentals
-- **fixed-income-sovereign** (wealth-management plugin, Layer 2): yield curve context and duration concepts
-- **fixed-income-corporate** (wealth-management plugin, Layer 2): comparing muni spreads to corporate spreads
-- **tax-efficiency** (wealth-management plugin, Layer 5): muni bonds as a primary tax management tool
+- **time-value-of-money** (core plugin): present value and discounting fundamentals
+- **fixed-income-sovereign**: yield curve context and duration concepts
+- **fixed-income-corporate**: comparing muni spreads to corporate spreads
+- **tax-efficiency**: muni bonds as a primary tax management tool
 
-## Reference Implementation
-See `scripts/fixed_income_municipal.py` for computational helpers.
+## Running the Script
+
+```bash
+uv run scripts/fixed_income_municipal.py            # run the demo (uses PEP 723 inline deps)
+uv run scripts/fixed_income_municipal.py --verify   # check demo outputs against the worked examples (exit 1 on mismatch)
+python3 scripts/fixed_income_municipal.py            # alternative (requires: pip install numpy)
+```
+
+The demo prints the calculations covered above; its values match the worked examples in this skill. Run `--help` for a list of the classes and functions. For programmatic use, import the module rather than running it — the demo only executes under `python fixed_income_municipal.py`.

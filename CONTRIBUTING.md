@@ -15,8 +15,8 @@ You can suggest new skills by
 
 ### 1. Choose the right plugin
 
-Skills belong to one of seven plugins. Check [PLAN.md](PLAN.md) for the full list
-and planned skills.
+Skills belong to one of seven plugins. Check `marketplace.json` and the
+`plugins/` directory for the full list.
 
 | Plugin | Domain | Skill type |
 |--------|--------|------------|
@@ -52,14 +52,20 @@ The `name` field must match the directory name exactly.
 
 ### 4. Follow the template
 
-All skills share a common structure (see [PLAN.md](PLAN.md) for the full template):
+All skills share a common structure (see `CLAUDE.md` for the canonical
+template):
 
-- **Purpose** — what the skill enables Claude to do
-- **When to Use** — trigger phrases and situations
+- **No Purpose, Layer, or Direction body sections** — triggering lives in
+  the frontmatter `description`; the body opens with domain content
 - **Core Concepts** — the domain knowledge
-- **Worked Examples** — concrete scenarios with analysis
+- **Worked Examples** — concrete scenarios with analysis (move to
+  `references/examples.md` if the body exceeds ~250 lines)
 - **Common Pitfalls** — mistakes to watch for
 - **Cross-References** — links to related skills in other plugins
+- **Time anchoring** — any indexed threshold, rate, or effective date
+  carries an as-of anchor (e.g. "$X as of 2026")
+- Script-bearing skills include a **## Running the script** section with the
+  exact invocation and a `--verify` mode
 
 **Quantitative skills** (core, wealth-management) additionally include:
 - **Key Formulas** — reference table with expressions and use cases
@@ -93,6 +99,39 @@ Update the Cross-References section in both the new skill and any related existi
 skills. Cross-references should include the plugin name and a brief description of
 the relationship.
 
+### 7. Add evals (required for every new skill)
+
+New skills must ship with evals before they are merged:
+
+- **Output evals:** at least **3 entries in `evals/evals.json`**, each with a
+  realistic prompt, an `expected_output` description, and concrete
+  `assertions` (use the existing types: `contains_concept`,
+  `numerical_accuracy`, `depth_check`, `conceptual_focus`, `absence`).
+- **Trigger queries:** at least **4 entries in `evals/trigger/queries.json`**
+  — 2 should-trigger queries labeled with your skill name and 2 near-miss
+  should-not-trigger queries labeled `null`, assigned to an appropriate
+  cluster (add a new cluster if your skill collides with a sibling skill).
+- **Baseline run:** before submitting, run your prompts once with the skill
+  installed and once without, and grade both with
+  `finance-skills-workspace/grade_responses.py`. Include the with/without
+  pass rates in your PR description. If the with-skill run does not beat or
+  match the baseline, the skill needs more depth or sharper assertions.
+
+### 8. Keep both plugin manifests in sync
+
+Each plugin has **two** manifest files, and both must be updated together
+whenever versions, descriptions, or the skill list change:
+
+- `plugins/<name>/.claude-plugin/plugin.json` — the **canonical** Claude Code
+  plugin spec file (this is what the marketplace and plugin loader read)
+- `plugins/<name>/plugin.json` — the repo's extended manifest (adds
+  `dependencies`, `skills`, `tags`, `scripts` used by `install.sh` and docs)
+
+Do not delete either file. If you add or remove a skill, update the `skills`
+array in `plugins/<name>/plugin.json`, the counts in `marketplace.json` and
+`CLAUDE.md`, and keep the description/version identical across both
+plugin.json files.
+
 ## Improving Existing Skills
 
 1. Read the existing skill thoroughly
@@ -119,6 +158,9 @@ the relationship.
 - [ ] No sensitive data or credentials
 - [ ] Compliance skills cite specific rule numbers
 - [ ] Python scripts (if any) are standalone and match SKILL.md formulas
+- [ ] ≥3 output evals in `evals/evals.json` and ≥4 trigger queries in `evals/trigger/queries.json`
+- [ ] With-skill vs without-skill baseline run completed and graded
+- [ ] Both `plugin.json` files (spec + extended) updated together; skill counts in `marketplace.json`/`CLAUDE.md` updated
 
 ## Questions?
 

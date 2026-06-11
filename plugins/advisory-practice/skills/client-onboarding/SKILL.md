@@ -5,29 +5,6 @@ description: "Design and implement end-to-end client onboarding workflows from p
 
 # Client Onboarding
 
-## Purpose
-Guide the design and implementation of client onboarding workflows for wealth management and advisory firms. This skill covers the end-to-end process from prospect intake through funded account — including digital identity verification, suitability data collection, account type selection, document generation, e-signature, custodian submission, and initial investment. It enables a user or agent to design, evaluate, or troubleshoot onboarding systems that satisfy regulatory requirements while minimizing friction for advisors and clients.
-
-## Layer
-10 — Advisory Practice (Front Office)
-
-## Direction
-prospective
-
-## When to Use
-- Designing or redesigning a digital client onboarding workflow
-- Evaluating onboarding platforms or technology vendors
-- Integrating KYC/CIP verification into account opening processes
-- Building document collection and generation pipelines for new accounts
-- Implementing e-signature workflows for account opening forms
-- Connecting onboarding systems to custodian APIs (Schwab, Fidelity, Pershing)
-- Troubleshooting high NIGO (Not In Good Order) rejection rates
-- Designing suitability and risk profiling questionnaires for new clients
-- Determining which compliance checkpoints to embed in onboarding flows
-- Opening complex account types (trusts, entities, estates) that require additional documentation
-- Comparing advisor-assisted vs self-service (digital-direct) onboarding models
-- Measuring onboarding efficiency and identifying workflow bottlenecks
-
 ## Core Concepts
 
 ### Onboarding Workflow Architecture

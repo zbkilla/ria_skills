@@ -1,28 +1,9 @@
 ---
 name: tax-efficiency
-description: "Maximize after-tax returns through strategic asset location, tax-loss harvesting, gain/loss management, and withdrawal sequencing. Use when the user asks about asset location, tax-loss harvesting, Roth conversions, tax-efficient withdrawals, tax lot selection, or charitable giving with appreciated securities. Also trigger when users mention 'which account should I hold bonds in', 'wash-sale rule', 'tax drag', 'Roth vs Traditional', 'RMD planning', 'bracket stuffing', 'HIFO vs FIFO', or ask how to minimize taxes on investments."
+description: "Maximizes after-tax returns through strategic asset location, gain/loss management, and withdrawal sequencing. Use when the user asks about asset location, Roth conversions, tax-efficient withdrawals, tax lot selection, or charitable giving with appreciated securities. Also trigger when users mention 'which account should I hold bonds in', 'tax drag', 'Roth vs Traditional', 'RMD planning', 'bracket stuffing', 'HIFO vs FIFO', or ask how to minimize taxes on investments. For tax-loss harvesting execution and wash-sale mechanics, see the tax-loss-harvesting skill."
 ---
 
 # Tax-Efficient Investing
-
-## Purpose
-Maximize after-tax returns through strategic asset location, tax-loss harvesting, gain/loss management, and withdrawal sequencing. This skill addresses both the accumulation phase (minimizing tax drag) and the distribution phase (optimizing withdrawal order across account types).
-
-## Layer
-5 — Policy & Planning
-
-## Direction
-both
-
-## When to Use
-- Deciding which assets to hold in taxable vs tax-deferred vs tax-exempt (Roth) accounts
-- Evaluating tax-loss harvesting opportunities and managing wash-sale compliance
-- Computing after-tax returns and tax drag on portfolio performance
-- Planning Roth conversion strategies and breakeven analysis
-- Designing tax-efficient withdrawal sequences in retirement
-- Evaluating charitable giving strategies with appreciated securities
-- Managing tax lot selection to minimize realized gains
-- Planning around Required Minimum Distributions (RMDs)
 
 ## Core Concepts
 
@@ -51,6 +32,7 @@ Different income types face different tax rates:
 - **Qualified dividends:** Taxed at long-term capital gains rates (0%, 15%, or 20% + 3.8% NIIT)
 - **Short-term capital gains (held ≤ 1 year):** Ordinary income rates
 - **Long-term capital gains (held > 1 year):** Preferential rates (0%, 15%, or 20% + 3.8% NIIT)
+- The 3.8% NIIT applies above $250,000 MAGI (MFJ) — a statutory threshold that is not inflation-indexed
 - After-tax return on income: R_at = R × (1 - t)
 - Capital gains are taxed only at realization, providing a deferral benefit
 
@@ -79,7 +61,7 @@ Convert Traditional IRA/401k assets to Roth, paying ordinary income tax now for 
 - Tax on conversion: conversion amount × current marginal rate
 
 ### Required Minimum Distributions (RMDs)
-Mandatory annual withdrawals from tax-deferred accounts (Traditional IRA, 401k) beginning at age 73 (under SECURE 2.0):
+Mandatory annual withdrawals from tax-deferred accounts (Traditional IRA, 401k) beginning at age 73 (under SECURE 2.0, rising to 75 in 2033):
 
 - RMD = account balance (Dec 31 prior year) / distribution period (from IRS Uniform Lifetime Table)
 - Failure penalty: 25% excise tax on shortfall (reduced from prior 50%)
@@ -95,7 +77,7 @@ The order of withdrawals from different account types in retirement:
 
 ### Charitable Giving Strategies
 - **Donate appreciated stock:** Avoid capital gains tax and deduct full fair market value (must be held > 1 year)
-- **Qualified Charitable Distributions (QCDs):** Donate up to $105,000/year directly from IRA to charity (counts toward RMD, excluded from taxable income); available at age 70½+
+- **Qualified Charitable Distributions (QCDs):** Donate up to $111,000/year (2026 limit, indexed annually) directly from IRA to charity (counts toward RMD, excluded from taxable income); available at age 70½+
 - **Donor-Advised Funds (DAFs):** Bunch multiple years of donations for itemized deduction, invest tax-free, distribute to charities over time
 
 ## Key Formulas
@@ -103,11 +85,11 @@ The order of withdrawals from different account types in retirement:
 | Formula | Expression | Use Case |
 |---------|-----------|----------|
 | After-tax return (income) | R_at = R × (1 - t) | Bond/interest income after tax |
-| After-tax return (deferred gains) | R_at = (1 + R)^n × (1 - t_cg) + t_cg)^(1/n) - 1 | Unrealized equity with deferral benefit |
+| After-tax return (deferred gains) | R_at = ((1 + R)^n × (1 - t_cg) + t_cg)^(1/n) - 1 | Unrealized equity with deferral benefit |
 | Tax-loss harvesting value | TLH_value = loss × marginal_tax_rate | Immediate tax benefit of harvesting |
 | Roth conversion breakeven | t_now < t_future | Convert when current rate < future rate |
 | RMD amount | RMD = balance_Dec31 / distribution_period | Required minimum distribution |
-| Points breakeven (charitable) | Tax saved = FMV × t_income + gain × t_cg_avoided | Benefit of donating appreciated stock |
+| Appreciated-stock donation benefit | Tax saved = FMV × t_income + gain × t_cg_avoided | Tax benefit of donating appreciated stock (deduction + avoided gains tax) |
 
 ## Worked Examples
 
@@ -124,13 +106,14 @@ The order of withdrawals from different account types in retirement:
 
 ### Example 2: Roth conversion breakeven
 **Given:** Consider converting $50,000 from Traditional IRA to Roth. Current marginal tax rate: 24%. Tax on conversion paid from outside funds. Investment horizon: 20 years. Expected return: 7%.
+**Simplifying assumption:** Assume the $12,000, if not used for conversion tax, would grow at the same 7% with no tax drag — i.e., side-fund growth itself is untaxed.
 **Calculate:** Future marginal tax rate at which conversion breaks even.
 **Solution:**
 1. **Cost of conversion now:** $50,000 × 24% = $12,000 tax paid today.
 2. **Traditional IRA path:** $50,000 grows to $50,000 × (1.07)^20 = $193,484. After-tax at withdrawal: $193,484 × (1 - t_future).
-3. **Roth path:** $50,000 grows to $193,484 tax-free. Net cost: $193,484 - $12,000 × (1.07)^20 = $193,484 - $46,412 = $147,072 net benefit after accounting for lost growth on tax paid.
-4. **Breakeven:** Set Traditional after-tax = Roth net value. $193,484 × (1 - t_future) = $193,484 - $46,412 → t_future = $46,412 / $193,484 = **24.0%**.
-5. **Conclusion:** Breakeven future rate equals the current rate (24%). If the future rate exceeds 24%, the Roth conversion is beneficial. This result holds generally: conversion wins when future rate > current rate, assuming tax is paid from outside funds.
+3. **Roth path:** $50,000 grows to $193,484 tax-free, but the $12,000 side fund forgoes growth to $12,000 × (1.07)^20 = $46,436. Roth net value: $193,484 - $46,436 = $147,048.
+4. **Breakeven:** Set Traditional after-tax = Roth net value. $193,484 × (1 - t_future) = $193,484 - $46,436 → t_future = $46,436 / $193,484 = **24.0%**.
+5. **Conclusion:** Under this simplification the breakeven future rate equals the current rate (24%) — both sides scale by the same (1.07)^20, so the horizon and return cancel. In reality the taxable side fund suffers tax drag on its dividends and realized gains, so paying conversion tax from outside funds tilts the comparison toward Roth even when the future rate merely equals the current rate.
 
 ## Common Pitfalls
 - TLH wash sale violations, including purchases in other accounts, IRAs, or a spouse's account within the 30-day window
@@ -139,7 +122,7 @@ The order of withdrawals from different account types in retirement:
 - Ignoring the tax benefit of donating appreciated securities vs cash (avoids capital gains and gets full deduction)
 - RMD-driven forced selling at inopportune times — plan withdrawals ahead of deadlines
 - Roth converting too aggressively and pushing into a higher bracket in the conversion year
-- Forgetting the 3.8% Net Investment Income Tax (NIIT) above income thresholds
+- Forgetting the 3.8% Net Investment Income Tax (NIIT) above $250,000 MAGI (MFJ) — a statutory threshold that is not inflation-indexed, so it captures more taxpayers each year
 - Not coordinating tax strategy across spouses' accounts
 
 ## Cross-References
@@ -151,5 +134,5 @@ The order of withdrawals from different account types in retirement:
 - **tax-loss-harvesting** (wealth-management plugin, Layer 5): dedicated TLH workflow skill with detailed candidate identification, wash-sale tracking, and execution planning
 - **financial-planning-workflow** (advisory-practice plugin, Layer 10): tax-aware strategies are core recommendations in comprehensive financial plans
 
-## Reference Implementation
-See `scripts/tax_efficiency.py` for computational helpers.
+## Running the script
+Run with `uv run scripts/tax_efficiency.py` (the PEP 723 header resolves dependencies automatically) or with `python3 scripts/tax_efficiency.py` after `pip install numpy scipy`. The bare run prints a demo covering after-tax returns, tax drag, TLH benefit, asset location placement, and Roth conversion breakeven. Pass `--verify` to assert the demo outputs match this skill's worked examples (prints PASS/FAIL), or `--help` for an overview of the available classes. The file is primarily meant to be imported as a module (e.g., `from tax_efficiency import AfterTaxReturn, AssetLocation, BreakevenAnalysis`).

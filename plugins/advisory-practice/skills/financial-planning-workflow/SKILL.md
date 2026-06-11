@@ -1,30 +1,9 @@
 ---
 name: financial-planning-workflow
-description: "Orchestrate the complete advisor workflow for assembling and delivering a comprehensive financial plan, from data gathering through recommendations and ongoing monitoring. Use when the user asks about building a financial plan for a client, structuring a planning engagement, coordinating retirement and education and estate goals into one plan, running scenario analysis across a full financial picture, prioritizing competing recommendations, preparing for a plan presentation meeting, or deciding when a plan needs updating. Also trigger when users mention 'comprehensive financial plan', 'discovery meeting', 'cash flow analysis', 'retirement modeling', 'education funding gap', 'plan delivery', 'savings rate', 'plan update trigger', or 'is my client on track'."
+description: "Orchestrate the advisor workflow for assembling and delivering a comprehensive financial plan — data gathering, cash flow analysis, retirement modeling, Monte Carlo analysis, Roth conversion and withdrawal sequencing, Social Security claiming strategy, education and estate goals, scenario modeling, and prioritized recommendations. Use when the user asks about building a financial plan, structuring a planning engagement, retirement or Social Security modeling, Roth conversion strategy, scenario analysis, prioritizing competing recommendations, preparing a plan presentation, or deciding when a plan needs updating. Also trigger on 'comprehensive financial plan', 'discovery meeting', 'retirement modeling', 'Monte Carlo', 'Roth conversion', 'Social Security claiming', 'savings rate', or 'is my client on track'. For planning-tool data flows, capital market assumption governance, or connecting planning software to CRM/PMS, use financial-planning-integration instead."
 ---
 
 # Financial Planning Workflow
-
-## Purpose
-Guide the complete advisor workflow for assembling and delivering a comprehensive financial plan. This skill orchestrates the planning engagement from initial client data gathering through cash flow projections, retirement modeling, goal-specific analysis, scenario modeling, and prioritized recommendations. It covers the sequencing, dependencies, and decision points at each stage of plan construction — teaching Claude how to coordinate multi-goal financial plans rather than individual calculations, which are handled by dedicated quantitative skills.
-
-## Layer
-10 — Advisory Practice (Front Office)
-
-## Direction
-prospective
-
-## When to Use
-- Building a comprehensive financial plan for a new or existing advisory client
-- Determining what data to gather before starting financial plan analysis
-- Structuring a planning engagement from discovery meeting through plan delivery
-- Coordinating multiple planning goals (retirement, education, estate, risk management) into a unified plan
-- Running scenario analysis across a client's full financial picture (early retirement, job loss, inheritance, market downturn)
-- Prioritizing recommendations when a client has competing goals and limited resources
-- Preparing for a plan presentation meeting and anticipating client questions
-- Deciding when a financial plan needs updating based on life events or market changes
-- Integrating retirement modeling with Social Security timing, Roth conversions, and withdrawal sequencing
-- Assessing whether a client's current plan is on track or requires course correction
 
 ## Core Concepts
 
@@ -77,13 +56,13 @@ For clients with children or grandchildren, education funding is modeled as a sp
 - **Estimate total cost** using current tuition for target institution types (public in-state, public out-of-state, private) inflated at the education inflation rate (historically 5-6% annually, higher than general CPI).
 - **Assess current 529 balances** and ongoing contribution capacity. Model the investment glide path within the 529 (aggressive early, conservative as enrollment approaches).
 - **Analyze the funding gap** between projected 529 balances and total cost. Determine how much must come from current cash flow at the time of enrollment.
-- **Consider financial aid interaction** — 529 assets owned by the parent count as parental assets on FAFSA (assessed at up to 5.64% vs 20% for student assets). Grandparent-owned 529s no longer count as student income under simplified FAFSA rules effective 2024-2025.
+- **Consider financial aid interaction** — 529 assets owned by the parent count as parental assets on the FAFSA (assessed at up to 5.64% vs 20% for student assets). The simplified FAFSA replaced the Expected Family Contribution with the Student Aid Index (SAI), and under SAI rules distributions from grandparent-owned 529s no longer count as student income. Verify current FAFSA treatment when modeling aid eligibility.
 - **Evaluate trade-offs** between fully funding education and other goals. Retirement should generally take priority because education can be funded with loans while retirement cannot.
 
 ### Estate Planning Integration
 The financial plan must address wealth transfer, even for clients who do not consider themselves wealthy. Key elements:
 
-- **Estate tax exposure** — calculate the gross estate (all assets including life insurance death benefits, retirement accounts, and real estate) against the current federal exemption. For clients near or above the exemption, model the sunset of the TCJA exemption provisions.
+- **Estate tax exposure** — calculate the gross estate (all assets including life insurance death benefits, retirement accounts, and real estate) against the current federal exemption. The scheduled TCJA sunset never took effect: the One Big Beautiful Bill Act (2025) set the exemption at $15 million per person (about $30 million per married couple) for 2026, made it permanent, and indexed it for inflation beginning in 2027. Verify current-year exemption values before modeling. For clients near or above the exemption, model lifetime gifting and trust strategies that use the exemption.
 - **Trust structures** — identify whether existing or new trusts serve the client's goals: revocable living trusts for probate avoidance, irrevocable life insurance trusts (ILITs) for removing life insurance from the estate, generation-skipping trusts, and special needs trusts for dependents with disabilities.
 - **Beneficiary designation audit** — verify that beneficiary designations on retirement accounts, insurance policies, and TOD/POD accounts are current and consistent with the estate plan. Beneficiary designations override wills.
 - **Charitable giving strategy** — for charitably inclined clients, evaluate donor-advised funds, qualified charitable distributions (QCDs) from IRAs after age 70.5, charitable remainder trusts, and bunching strategies for itemized deductions.

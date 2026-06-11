@@ -14,20 +14,27 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGINS_DIR="$SCRIPT_DIR/plugins"
 
-# Plugin dependency map (space-separated list of deps per plugin)
-declare -A PLUGIN_DEPS
-PLUGIN_DEPS["core"]=""
-PLUGIN_DEPS["wealth-management"]="core"
-PLUGIN_DEPS["compliance"]="core"
-PLUGIN_DEPS["advisory-practice"]="core wealth-management"
-PLUGIN_DEPS["trading-operations"]="core"
-PLUGIN_DEPS["client-operations"]="core"
-PLUGIN_DEPS["data-integration"]="core"
+# Plugin dependency map (space-separated list of deps per plugin).
+# Implemented as a function rather than `declare -A` so the script runs on
+# macOS's stock bash 3.2, which has no associative arrays.
+plugin_deps() {
+  case "$1" in
+    core)               echo "" ;;
+    wealth-management)  echo "core" ;;
+    compliance)         echo "core" ;;
+    advisory-practice)  echo "core wealth-management" ;;
+    trading-operations) echo "core" ;;
+    client-operations)  echo "core" ;;
+    data-integration)   echo "core" ;;
+    *)                  echo "" ;;
+  esac
+}
 
 ALL_PLUGINS=(core wealth-management compliance advisory-practice trading-operations client-operations data-integration)
 
-# Track installed plugins to avoid duplicates
-declare -A INSTALLED_PLUGINS
+# Track installed plugins to avoid duplicates (space-delimited list;
+# bash 3.2 compatible — no associative arrays).
+INSTALLED_PLUGINS=" "
 
 usage() {
   cat <<EOF
@@ -83,7 +90,7 @@ PYEOF
         skill_count=$(ls "$PLUGINS_DIR/$plugin/skills/" 2>/dev/null | wc -l | tr -d ' ')
         echo "  $plugin ($skill_count skills)"
         echo "    $description"
-        deps="${PLUGIN_DEPS[$plugin]:-}"
+        deps="$(plugin_deps "$plugin")"
         if [[ -n "$deps" ]]; then
           echo "    Dependencies: $deps"
         fi
@@ -99,9 +106,9 @@ install_plugin() {
   local skills_dir="$target/.claude/skills"
 
   # Skip if already installed in this run
-  if [[ -n "${INSTALLED_PLUGINS[$plugin]+_}" ]]; then
-    return 0
-  fi
+  case "$INSTALLED_PLUGINS" in
+    *" $plugin "*) return 0 ;;
+  esac
 
   # Validate plugin exists
   if [[ ! -d "$PLUGINS_DIR/$plugin" ]]; then
@@ -111,7 +118,8 @@ install_plugin() {
   fi
 
   # Install dependencies first
-  local deps="${PLUGIN_DEPS[$plugin]:-}"
+  local deps
+  deps="$(plugin_deps "$plugin")"
   for dep in $deps; do
     install_plugin "$dep" "$target"
   done
@@ -134,7 +142,9 @@ install_plugin() {
         else
           ln -s "$skill_dir" "$link_path"
           echo "  Linked $skill_name"
-          ((count++))
+          # NOT ((count++)): under `set -e`, ((count++)) returns the
+          # pre-increment value, so the first increment (0) aborts the script.
+          count=$((count + 1))
         fi
       fi
     done
@@ -143,7 +153,7 @@ install_plugin() {
     echo "  Warning: no skills directory found for plugin '$plugin'"
   fi
 
-  INSTALLED_PLUGINS[$plugin]=1
+  INSTALLED_PLUGINS="$INSTALLED_PLUGINS$plugin "
 }
 
 # --- Parse arguments ---

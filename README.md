@@ -288,7 +288,6 @@ Installing any plugin automatically installs `core`.
 ```
 finance_skills/
 ├── README.md
-├── PLAN.md                    # Architecture and implementation roadmap
 ├── CLAUDE.md                  # Claude Code project instructions
 ├── marketplace.json           # Machine-readable catalog of all plugins
 ├── install.sh                 # Plugin installer

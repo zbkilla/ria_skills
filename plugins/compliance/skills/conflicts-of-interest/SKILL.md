@@ -5,27 +5,7 @@ description: "Identify, disclose, and mitigate conflicts of interest in advisory
 
 # Conflicts of Interest
 
-## Purpose
-Identify, disclose, and mitigate conflicts of interest that arise in advisory and brokerage relationships. This is a cross-cutting compliance topic referenced by nearly every other regulatory skill, covering compensation-based conflicts, proprietary product incentives, principal trading, soft dollar arrangements, pay-to-play restrictions, gifts and entertainment limits, personal trading obligations, and the mitigation hierarchy that governs how firms and individuals must address conflicts under both fiduciary and Reg BI standards.
-
-## Layer
-9 — Compliance & Regulatory Guidance
-
-## Direction
-prospective
-
-## When to Use
-- Evaluating whether a recommendation or transaction involves a material conflict of interest
-- Assessing whether compensation structures create incentives that may not align with client interests
-- Determining disclosure obligations for conflicts in advisory or brokerage accounts
-- Reviewing whether a firm's conflict-mitigation policies satisfy Reg BI or fiduciary duty requirements
-- Analyzing proprietary product recommendations and affiliated product preferences
-- Evaluating soft dollar arrangements and best execution obligations
-- Reviewing pay-to-play compliance for government entity advisory mandates
-- Assessing gifts, entertainment, or non-cash compensation under FINRA rules
-- Designing or auditing a code of ethics and personal trading policies for access persons
-- Evaluating fair allocation of investment opportunities across client accounts
-- Reviewing outside business activities for potential conflicts
+Regulatory status current as of June 2026 — verify effective dates, dollar thresholds, and pending rulemakings against current SEC/FINRA/FinCEN sources before advising.
 
 ## Core Concepts
 

@@ -5,28 +5,6 @@ description: "Prepare advisors for client review meetings by assembling context 
 
 # Client Review Preparation
 
-## Purpose
-
-Guide the end-to-end workflow for preparing a wealth management advisor to conduct a client review meeting. This skill covers assembling the client context package, summarizing investment performance, identifying allocation drift, generating tailored talking points and proactive recommendations, building a structured meeting agenda with supporting exhibits, and completing a compliance pre-check before the meeting. It enables a user or agent to orchestrate all the data gathering, analysis, and document assembly steps required to walk into a review meeting fully prepared, with no manual scrambling.
-
-## Layer
-
-10 — Advisory Practice (Front Office)
-
-## Direction
-
-both
-
-## When to Use
-
-- An advisor asks to prepare for an upcoming client review meeting (annual, quarterly, or triggered)
-- A practice manager is building or standardizing the firm's review preparation workflow
-- Someone needs a checklist of what to gather and analyze before a client meeting
-- An advisor wants proactive recommendation ideas tailored to a specific client
-- The firm is automating review prep by integrating CRM, PMS, and planning data into a meeting package
-- A review is triggered by a life event, market event, or regulatory change rather than the regular cadence
-- An advisor needs to assemble a meeting agenda and supporting exhibits for a specific client
-
 ## Core Concepts
 
 ### Client Context Assembly

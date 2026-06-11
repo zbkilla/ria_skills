@@ -5,23 +5,6 @@ description: "Evaluate investment performance on a risk-adjusted basis using ind
 
 # Performance Metrics
 
-## Purpose
-Evaluate investment performance on a risk-adjusted basis using industry-standard ratios and capture analysis. This skill covers the Sharpe, Sortino, Information, Treynor, and Calmar ratios, the Omega ratio, upside/downside capture ratios, and M-squared. These metrics allow fair comparison across strategies with different risk profiles.
-
-## Layer
-1a — Realized Risk & Performance
-
-## Direction
-Retrospective
-
-## When to Use
-- Evaluating how well an investment or strategy performed relative to the risk it took
-- Comparing managers, funds, or strategies on a risk-adjusted basis
-- Computing Sharpe, Sortino, Information Ratio, Treynor, or Calmar ratios
-- Performing upside/downside capture analysis against a benchmark
-- Calculating the Omega ratio for a given threshold return
-- Assessing M-squared (Modigliani-Modigliani) risk-adjusted performance
-
 ## Core Concepts
 
 ### Sharpe Ratio
@@ -188,8 +171,9 @@ The manager generated 0.50 units of active return per unit of active risk. This 
 
 ## Cross-References
 - **historical-risk** (wealth-management plugin, Layer 1a): Provides the risk measures (volatility, drawdown, downside deviation, tracking error) used as denominators in these performance ratios.
+- **performance-reporting** (wealth-management plugin, Layer 8) and **return-calculations** (core plugin, Layer 0): For TWR/MWR calculation methodology and reporting presentation, see performance-reporting and core/return-calculations.
 - **forward-risk** (wealth-management plugin, Layer 1b): Forward-looking risk measures (VaR, CVaR) complement retrospective performance assessment by estimating future potential losses.
 - **volatility-modeling** (wealth-management plugin, Layer 1b): Volatility forecasts from GARCH or EWMA can be used to compute forward-looking or conditional Sharpe ratios.
 
-## Reference Implementation
-See `scripts/performance_metrics.py` for computational helpers.
+## Running the script
+Run with `uv run scripts/performance_metrics.py` (the PEP 723 header resolves numpy automatically) or with `python3 scripts/performance_metrics.py` after `pip install numpy scipy`. A bare run prints a full scorecard (Sharpe, Sortino, Information Ratio, Calmar, Treynor, Omega, capture ratios, batting average, win/loss) on seeded synthetic portfolio and benchmark data. Use `--verify` to assert outputs match this skill's worked examples and the demo's expected values (exit code 0 on PASS) and `--help` for an overview of the class. The file is primarily meant to be imported as a module (e.g., `from performance_metrics import PerformanceScorecard`).

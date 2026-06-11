@@ -1,5 +1,5 @@
 # /// script
-# dependencies = ["numpy"]
+# dependencies = []
 # requires-python = ">=3.11"
 # ///
 """
@@ -10,15 +10,17 @@ NPV, IRR, annuities, perpetuities, amortization schedules, and compounding
 conventions.
 
 Usage:
-    python time_value_of_money.py
+    uv run time_value_of_money.py            # demo + verification (default)
+    python time_value_of_money.py --verify   # same as bare invocation
+    python time_value_of_money.py --help     # list available functions
 
 Dependencies:
-    numpy
+    none (standard library only)
 """
 
+import argparse
 import math
-
-import numpy as np
+import sys
 
 
 # ---------------------------------------------------------------------------
@@ -203,10 +205,9 @@ def growing_annuity_pv(
         periods: Total number of payment periods.
 
     Returns:
-        The present value of the growing annuity.
-
-    Raises:
-        ValueError: If rate equals growth_rate (use annuity_pv instead).
+        The present value of the growing annuity. When rate equals
+        growth_rate the standard formula is undefined (division by zero),
+        and the limit formula PV = PMT * n / (1 + r) is used instead.
     """
     if abs(rate - growth_rate) < 1e-12:
         # When r == g, PV = PMT * n / (1 + r)
@@ -376,9 +377,59 @@ class AmortizationSchedule:
 
 
 # ---------------------------------------------------------------------------
-# Demonstration
+# Demonstration and verification
 # ---------------------------------------------------------------------------
-if __name__ == "__main__":
+
+_FUNCTIONS_HELP = """\
+Available functions:
+  present_value(future_value, rate, periods)
+  future_value(present_val, rate, periods)
+  npv(rate, cash_flows)
+  irr(cash_flows, guess=0.1)               # Newton's method
+  annuity_pv(payment, rate, periods, due=False)
+  annuity_fv(payment, rate, periods, due=False)
+  growing_annuity_pv(payment, rate, growth_rate, periods)
+  perpetuity_pv(payment, rate, growth_rate=0.0)
+  fisher_rate(nominal, inflation)
+  continuous_compounding(rate, time)
+  AmortizationSchedule(principal, annual_rate, periods, periods_per_year=12)
+    .schedule() / .total_interest() / .total_payments()
+
+Import usage (preferred for programmatic work):
+  from time_value_of_money import npv, irr, AmortizationSchedule
+  npv(0.10, [-50_000, 12_000, 15_000, 18_000, 22_000, 25_000])
+
+Running bare (or with --verify) prints a demo of every function and
+asserts the worked-example values from SKILL.md, exiting nonzero on
+any mismatch.
+"""
+
+
+def _verify() -> None:
+    """Assert that key outputs match the SKILL.md worked examples."""
+    # SKILL.md Example 1: $300,000 mortgage, 6.5% annual, 360 monthly
+    # payments -> PMT = $1,896.20
+    mortgage = AmortizationSchedule(
+        principal=300_000, annual_rate=0.065, periods=360, periods_per_year=12
+    )
+    pmt = mortgage._compute_payment()
+    assert abs(pmt - 1_896.20) < 0.005, f"Example 1 mortgage payment mismatch: {pmt}"
+
+    # SKILL.md Example 2: NPV of [-50k, 12k, 15k, 18k, 22k, 25k] at 10%
+    # = $17,378.78; IRR = 21.18%
+    cfs = [-50_000, 12_000, 15_000, 18_000, 22_000, 25_000]
+    npv_val = npv(rate=0.10, cash_flows=cfs)
+    assert abs(npv_val - 17_378.78) < 0.005, f"Example 2 NPV mismatch: {npv_val}"
+    irr_val = irr(cash_flows=cfs)
+    assert abs(irr_val - 0.2118) < 5e-5, f"Example 2 IRR mismatch: {irr_val}"
+
+    print("\nVerification PASSED: outputs match SKILL.md worked examples")
+    print(f"  Example 1 mortgage payment: ${pmt:,.2f}")
+    print(f"  Example 2 NPV at 10%:       ${npv_val:,.2f}")
+    print(f"  Example 2 IRR:              {irr_val:.4%}")
+
+
+def _demo() -> None:
     print("=" * 60)
     print("Time Value of Money - Reference Implementation Demo")
     print("=" * 60)
@@ -466,3 +517,31 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("All calculations completed successfully.")
     print("=" * 60)
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Time value of money reference implementation.",
+        epilog=_FUNCTIONS_HELP,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "--verify",
+        action="store_true",
+        help="run the demo and assert outputs match the SKILL.md worked "
+        "examples (this is also the default when run with no arguments)",
+    )
+    parser.parse_args()
+
+    # Bare invocation and --verify behave identically: demo + verification.
+    _demo()
+    try:
+        _verify()
+    except AssertionError as exc:
+        print(f"\nVerification FAILED: {exc}", file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

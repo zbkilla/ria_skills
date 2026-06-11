@@ -1,36 +1,9 @@
 ---
 name: advisor-dashboards
-description: "Design, build, and optimize dashboards for RIA practice management with AUM tracking, revenue analytics, and KPI frameworks. Use when the user asks about tracking firm-level metrics, monitoring advisor productivity, measuring organic growth rate, analyzing client retention and attrition, building executive or branch manager views, setting up exception alerts for NIGO or rebalancing drift, benchmarking against industry peers, or designing role-based dashboard access. Also trigger when users mention 'how is the practice doing', 'revenue per advisor', 'client attrition', 'net new assets', 'effective fee rate', 'practice benchmarking', 'AUM growth decomposition', 'advisor capacity', or 'referral tracking'."
+description: "Design, build, and optimize dashboards for RIA practice management with AUM tracking, revenue analytics, and KPI frameworks. Use when the user asks about tracking firm-level metrics, monitoring advisor productivity, measuring organic growth rate, analyzing client retention and attrition, building executive or branch manager views, setting up exception alerts for NIGO and operational items, benchmarking against industry peers, or designing role-based dashboard access. Also trigger when users mention 'how is the practice doing', 'revenue per advisor', 'client attrition', 'net new assets', 'effective fee rate', 'practice benchmarking', 'AUM growth decomposition', or 'advisor capacity'."
 ---
 
 # Advisor Dashboards
-
-## Purpose
-
-Provide comprehensive guidance on designing, building, and operating dashboards for registered investment advisory firms. This skill covers the full spectrum of advisory practice dashboards — from executive-level practice analytics and AUM/revenue tracking through advisor-facing daily operational views, client flow analysis, exception monitoring, and KPI frameworks. It enables Claude to advise on dashboard architecture, metric selection, role-based access design, data source integration, alerting logic, and the benchmarking frameworks that transform raw operational data into actionable practice intelligence for advisors, managers, compliance officers, and firm leadership.
-
-## Layer
-
-10 — Advisory Practice (Front Office)
-
-## Direction
-
-both
-
-## When to Use
-
-- Designing or evaluating dashboards for an RIA's management team or executive committee
-- Building an advisor-facing daily operational dashboard or morning briefing view
-- Defining practice-level KPIs and metric hierarchies for an advisory firm
-- Tracking AUM growth, revenue trends, and fee analytics across advisors, teams, or segments
-- Analyzing client flows — new client acquisition, attrition, money-in-motion, and competitive losses
-- Designing exception and alert dashboards for operations, compliance, or billing teams
-- Evaluating advisor productivity metrics — clients per advisor, revenue per advisor, capacity planning
-- Establishing benchmarking frameworks using industry data for RIA performance comparison
-- Selecting dashboard technology and data integration architecture for multi-system advisory environments
-- Building role-based views that serve different audiences (advisor, branch manager, compliance, executive)
-- Setting firm-level and advisor-level goals with progress tracking and trend visualization
-- Reviewing or improving an existing dashboard for relevance, usability, or data accuracy
 
 ## Core Concepts
 
@@ -118,7 +91,7 @@ Productivity dashboards help practice managers and firm leadership understand ho
 
 **Clients Per Advisor.** The number of active client households assigned to each advisor. Industry data suggests that a solo advisor can effectively manage 75-125 households depending on service model complexity and support staff. Advisors approaching their capacity limit need either additional support staff, a service model adjustment, or a planned transition of smaller clients. Advisors well below capacity represent either growth potential or an underperformance concern.
 
-**Revenue Per Advisor.** Total advisory revenue generated per advisor, calculated both as the advisor's personal book revenue and as revenue per advisor adjusted for team support (dividing team revenue by the number of team members). Revenue per advisor benchmarked against industry surveys (Schwab RIA Benchmarking, InvestmentNews Adviser Compensation Study, FA Insight) reveals whether the firm's advisor economics are competitive.
+**Revenue Per Advisor.** Total advisory revenue generated per advisor, calculated both as the advisor's personal book revenue and as revenue per advisor adjusted for team support (dividing team revenue by the number of team members). Revenue per advisor benchmarked against current industry surveys (e.g., the Schwab RIA Benchmarking Study and major adviser compensation and staffing studies — verify the current editions, as study names and sponsors change) reveals whether the firm's advisor economics are competitive.
 
 **Meeting Volume.** The number of client meetings (in-person, video, phone) conducted per advisor per period, sourced from CRM activity logs or calendar integration. Meeting volume is a leading indicator of relationship health and prospecting activity. Advisors with declining meeting counts may be disengaging from proactive client management.
 
@@ -155,7 +128,7 @@ Dashboards become significantly more valuable when metrics are displayed alongsi
 
 **Advisor-Level Goals.** Individual goals negotiated between each advisor and firm management. Common advisor-level goals include: net new AUM gathered, new households acquired, revenue target, meeting count, and planning engagement conversions. Advisor goal dashboards should be visible to the individual advisor (for self-management) and to the practice manager (for coaching and accountability). Display goals with the same actual/target/variance format and include a trend line showing progress over time.
 
-**Industry Benchmarks for RIA Metrics.** Annual benchmarking studies published by Schwab (RIA Benchmarking Study), Fidelity (RIA Benchmarking), InvestmentNews (Adviser Compensation and Staffing Study), and FA Insight (Growth by Design) provide median and top-quartile figures for key RIA metrics: revenue per advisor, AUM per advisor, operating margin, clients per advisor, staff-to-advisor ratio, organic growth rate, and client retention rate. Displaying firm metrics alongside these industry benchmarks reveals whether the firm is performing at, above, or below peer levels. Benchmarking is most meaningful when filtered by firm size (AUM range), geography, and service model to ensure an apples-to-apples comparison.
+**Industry Benchmarks for RIA Metrics.** Annual benchmarking studies published by major custodians and industry publishers — e.g., the Schwab RIA Benchmarking Study and Fidelity's RIA benchmarking research — provide median and top-quartile figures for key RIA metrics: revenue per advisor, AUM per advisor, operating margin, clients per advisor, staff-to-advisor ratio, organic growth rate, and client retention rate. Displaying firm metrics alongside these industry benchmarks reveals whether the firm is performing at, above, or below peer levels. Benchmarking is most meaningful when filtered by firm size (AUM range), geography, and service model to ensure an apples-to-apples comparison. Benchmarking studies are periodically renamed, merged, or discontinued, so verify the current edition before citing specific figures.
 
 **Trend Analysis.** Every KPI should be displayed with at least 8-12 quarters of historical trend data. Trends reveal patterns that point-in-time snapshots miss: gradual fee compression (effective fee rate declining 2 bps per year), seasonal flow patterns (outflows spike in April for tax payments), or advisor capacity approaching saturation (clients per advisor rising steadily). Moving averages (3-quarter or 4-quarter) smooth volatility and make the underlying trend more visible.
 
@@ -169,7 +142,37 @@ Dashboards become significantly more valuable when metrics are displayed alongsi
 
 The executive dashboard must synthesize data from three separate systems into a unified view without requiring the management committee to log into multiple platforms. The data integration layer should pull AUM and performance data from Orion nightly, client and pipeline data from Salesforce via API, and revenue and billing data from the billing system after each quarterly billing run (with interim accrual estimates during the quarter). All data should land in a lightweight data warehouse that powers the dashboard, ensuring that metric calculations are consistent and auditable.
 
-The layout should be organized into four quadrants aligned with the management committee's four key questions. The Growth quadrant displays: total firm AUM with quarter-over-quarter and year-over-year change, AUM growth decomposition waterfall (market vs. net new assets), organic growth rate (annualized) benchmarked against the 5-10% industry target, net flows for the current quarter with a rolling 12-month trend, and new client pipeline with estimated AUM and probability-weighted forecast. The Revenue quadrant displays: total quarterly revenue with prior-quarter and prior-year comparison, effective fee rate trend (trailing 8 quarters), revenue by advisor ranked by contribution, revenue concentration (percentage of revenue from top 10 clients flagged if any single household exceeds 5%), and revenue forecast for the next quarter based on current AUM and effective fee rates. The Compliance quadrant displays: annual review completion rate (percentage of clients current, target 100%), overdue compliance items count with aging breakdown, disclosure delivery status for any pending regulatory updates, and trade surveillance exception count. The People/Productivity quadrant displays: AUM per advisor and revenue per advisor benchmarked against Schwab RIA Benchmarking medians, clients per advisor with capacity indicators, advisor retention (have any advisors departed or signaled intent to leave), and staff-to-advisor ratio compared to industry benchmarks.
+The layout should be organized into four quadrants aligned with the management committee's four key questions.
+
+**Growth quadrant:**
+
+- Total firm AUM with quarter-over-quarter and year-over-year change
+- AUM growth decomposition waterfall (market vs. net new assets)
+- Organic growth rate (annualized) benchmarked against the 5-10% industry target
+- Net flows for the current quarter with a rolling 12-month trend
+- New client pipeline with estimated AUM and probability-weighted forecast
+
+**Revenue quadrant:**
+
+- Total quarterly revenue with prior-quarter and prior-year comparison
+- Effective fee rate trend (trailing 8 quarters)
+- Revenue by advisor, ranked by contribution
+- Revenue concentration: percentage of revenue from the top 10 clients, flagged if any single household exceeds 5%
+- Revenue forecast for the next quarter based on current AUM and effective fee rates
+
+**Compliance quadrant:**
+
+- Annual review completion rate (percentage of clients current; target 100%)
+- Overdue compliance items count with aging breakdown
+- Disclosure delivery status for any pending regulatory updates
+- Trade surveillance exception count
+
+**People/Productivity quadrant:**
+
+- AUM per advisor and revenue per advisor benchmarked against current industry-study medians
+- Clients per advisor with capacity indicators
+- Advisor retention (departures or signaled intent to leave)
+- Staff-to-advisor ratio compared to industry benchmarks
 
 **Analysis:**
 
